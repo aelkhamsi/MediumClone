@@ -25,6 +25,12 @@ db.connect((err) => {
 //   console.log("Medium database created...");
 // })
 
+// let sql = `CREATE TABLE users(id int AUTO_INCREMENT, username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), role VARCHAR(255), createdAt DATE, updatedAt DATE, PRIMARY KEY(id)
+// )`;
+// db.query(sql, (err, result) => {
+//   if (err) throw err;
+//   console.log("Users Table Created...");
+// })
 
 /////////////////////
 //// Middlewares ////
