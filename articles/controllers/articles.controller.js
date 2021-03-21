@@ -1,3 +1,4 @@
+// const Article = require('../models/article.ts');
 
 let articles = [
     {
@@ -16,6 +17,11 @@ let articles = [
         content: "Lorem Ipsum 3"
     }
 ]
+
+// let articles = [];
+// articles.push(new Article(1, "Article 1", "Lorem Ipsum 1"));
+// articles.push(new Article(2, "Article 2", "Lorem Ipsum 2"));
+// articles.push(new Article(3, "Article 3", "Lorem Ipsum 3"));
 
 exports.getAll = (req, res) => {
     res.send(articles);
@@ -38,7 +44,8 @@ exports.addArticle = (req, res) => {
     let content = req.body.content;
 
     if (title && content) {
-        let article = {id: articles.length + 1, title: title, content: content};
+        let article = new Article(articles.length + 1, title, content);
+        //let article = {id: articles.length + 1, title: title, content: content};
         articles.push(article);
         res
             .status(200)

@@ -1,3 +1,4 @@
+
 module.exports = (app) => {
     const articlesController = require('../controllers/articles.controller.js');
 
