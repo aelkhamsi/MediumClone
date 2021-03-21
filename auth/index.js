@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-/////////////////////////////
-//// Database connection ////
-/////////////////////////////
+/////////////////////////////////
+//// Database Initialization ////
+///////////////////////////////// 
 
 const mysql = require('mysql');
 const db = mysql.createConnection({
@@ -36,6 +37,7 @@ db.connect((err) => {
 //// Middlewares ////
 /////////////////////
 
+app.use(cors());
 app.use(bodyParser.json()) //Parsed data is populated on the request object (i.e. req.body).
 app.use(bodyParser.urlencoded( { extended: true }))
 app.use( (req, res, next ) => {
