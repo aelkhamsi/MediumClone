@@ -1,27 +1,28 @@
-// const Article = require('../models/article.ts');
+let ArticleModel = require('../models/article.js');
+let Article = ArticleModel.Article;
 
-let articles = [
-    {
-        id: 1,
-        title: "Article 1",
-        content: "Lorem Ipsum 1"
-    },
-    {
-        id: 2,
-        title: "Article 2",
-        content: "Lorem Ipsum 2"
-    },
-    {
-        id: 3,
-        title: "Article 3",
-        content: "Lorem Ipsum 3"
-    }
-]
+// let articles = [
+//     {
+//         id: 1,
+//         title: "Article 1",
+//         content: "Lorem Ipsum 1"
+//     },
+//     {
+//         id: 2,
+//         title: "Article 2",
+//         content: "Lorem Ipsum 2"
+//     },
+//     {
+//         id: 3,
+//         title: "Article 3",
+//         content: "Lorem Ipsum 3"
+//     }
+// ]
 
-// let articles = [];
-// articles.push(new Article(1, "Article 1", "Lorem Ipsum 1"));
-// articles.push(new Article(2, "Article 2", "Lorem Ipsum 2"));
-// articles.push(new Article(3, "Article 3", "Lorem Ipsum 3"));
+let articles = [];
+articles.push(new Article(1, "Article 1", "Lorem Ipsum 1"));
+articles.push(new Article(2, "Article 2", "Lorem Ipsum 2"));
+articles.push(new Article(3, "Article 3", "Lorem Ipsum 3"));
 
 exports.getAll = (req, res) => {
     res.send(articles);
