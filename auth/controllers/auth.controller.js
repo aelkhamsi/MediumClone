@@ -117,3 +117,24 @@ exports.signup = (req, res) => {
         .json({errorMessage: "Missing fields"})
   }
 };
+
+exports.checkToken = (req, res) => {
+  const token = req.body.token;
+  if (token) {
+    jwt.verify(token, "iamthegreatestaliveandiamhumble", function(err, decoded) { // TODO: create env variable for the secret
+        if (err || decoded == undefined) {
+          res
+            .status(401)
+            .json({errorMessage: "The token is not valid"})
+        } else {
+          res
+            .status(200)
+            .json({message: "The token is valid"})
+        }
+      });
+  } else {
+    res
+      .status(401)
+      .json({errorMessage: "The token is not provided"})
+  }
+}
