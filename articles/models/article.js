@@ -1,10 +1,8 @@
 
-
 class Article {
-
-    constructor(id, name, content, draft) { // TODO: id is temporary
-        this.id = id;   
+    constructor(name, content, draft) {
         this.name = name;
+        this.reference = null;
         this.content = content;
         if (draft) this.draft = draft;
         else this.draft = false;

@@ -44,7 +44,12 @@ setInterval(function () { //to keep the connection alive, make frequent quries t
     db.query('SELECT 1');
 }, 5000);
 
-
+// let sql = `CREATE TABLE articles(id int AUTO_INCREMENT, name VARCHAR(255), reference VARCHAR(255), content VARCHAR(255), draft BIT, createdAt DATE, updatedAt DATE, PRIMARY KEY(id)
+// )`;
+// db.query(sql, (err, result) => {
+//   if (err) throw err;
+//   console.log("Articles Table Created...");
+// })
 
 //////////////////
 ///// LISTEN /////
