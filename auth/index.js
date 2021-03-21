@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+const db = require('./config');
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -8,17 +8,18 @@ const app = express();
 //// Database Initialization ////
 ///////////////////////////////// 
 
-const mysql = require('mysql');
-const db = mysql.createConnection({
-  host: 'localhost',
-  port: 3307,
-  user: 'root',
-  database : 'medium'
-});
 db.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to Database...");
+  if (err) {
+    throw err;
+  }
+  console.log('Connected to Database...')
 });
+
+global.db = db;
+
+setInterval(function () { //to keep the connection alive, make frequent quries to SQL database
+  db.query('SELECT 1');
+}, 5000);
 
 // let sql = 'CREATE DATABASE medium';
 // db.query(sql, (err, result) => {
@@ -37,7 +38,6 @@ db.connect((err) => {
 //// Middlewares ////
 /////////////////////
 
-app.use(cors());
 app.use(bodyParser.json()) //Parsed data is populated on the request object (i.e. req.body).
 app.use(bodyParser.urlencoded( { extended: true }))
 app.use( (req, res, next ) => {
@@ -49,10 +49,10 @@ app.use( (req, res, next ) => {
   res.header('Content-Type', 'application/json') //REST-API: we only send back json data
   next()
 })
-app.use((req, res, next) => {
-  req.db = db
-  next();
-})
+// app.use((req, res, next) => {
+//   req.db = db
+//   next();
+// })
 
 
 ////////////////

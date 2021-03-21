@@ -4,7 +4,6 @@ const saltRounds = 10;
 
 
 exports.login = (req, res) => {
-  const db = req.db;
   const email = req.body.email;
   const password = req.body.password;
 
@@ -59,7 +58,6 @@ exports.login = (req, res) => {
 
 
 exports.signup = (req, res) => {
-  const db = req.db;
   const username = req.body.username;
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
