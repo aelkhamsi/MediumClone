@@ -27,6 +27,7 @@ app.use( (req, res, next ) => {
 ////////////////
 
 require('./routes/auth.routes.js')(app);
+require('./routes/users.routes.js')(app);
 
 
 ///////////////////////////

@@ -14,6 +14,7 @@ exports.getAll = (req, res) => {
     let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getAll.sql'), 'utf8');
     db.query(sql, (err, result) => {
         if (err) {
+            console.log(err);
             res
                 .status(500)
                 .json({errorMessage: "Internal server error. Please try another time1"})

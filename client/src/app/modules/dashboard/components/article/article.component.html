@@ -1,6 +1,6 @@
 <div *ngIf="article" class="container sticky">
     <h1> {{article.name}}</h1>
-    <p> <span class="bold"> Author: </span>  {{article.name}} <!--| <span class="bold"> Published at: </span>  {{author}} </p> -->
+    <p> <span class="bold"> Author: </span>  {{article.username}} | <span class="bold"> Published at: </span> {{article.createdAt.substring(0, 10)}} </p> 
     <p> 
         {{article.content}}
     </p>
