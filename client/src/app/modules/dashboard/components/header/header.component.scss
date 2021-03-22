@@ -13,6 +13,7 @@ header {
 .logo {
     margin: auto 20px;
     font-size: 24pt;
+    margin-top: 9%;
 }
 
 nav ul {
@@ -50,4 +51,8 @@ nav ul li a {
 
 .login-button a {
     color: #666;
+}
+
+a {
+    text-decoration: none !important;
 }

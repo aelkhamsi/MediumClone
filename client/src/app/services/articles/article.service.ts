@@ -37,7 +37,7 @@ export class ArticleService {
       content: content,
       userId: user.id
     }
-    return this.http.post<any>(this.ARTICLE_URI + "/article", article, this.httpOptions)
+    return this.http.post<any>(this.ARTICLE_URI + "/article", article, this.httpOptions);
   }
   
 }
