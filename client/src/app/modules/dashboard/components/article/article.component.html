@@ -1,7 +1,7 @@
-<div>
-    <h1> {{title}}</h1>
-    <p> <span class="bold"> Author: </span>  {{author}} <!--| <span class="bold"> Published at: </span>  {{author}} </p> -->
+<div *ngIf="article">
+    <h1> {{article.name}}</h1>
+    <p> <span class="bold"> Author: </span>  {{article.name}} <!--| <span class="bold"> Published at: </span>  {{author}} </p> -->
     <p> 
-        {{content}}
+        {{article.content}}
     </p>
 </div>

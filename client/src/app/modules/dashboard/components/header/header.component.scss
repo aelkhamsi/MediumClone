@@ -2,14 +2,12 @@
 header {
     width: 100%;
     height: 80px;
-    box-shadow: 0px 0px 10px 0px #666;
-    //background: rgb(228, 228, 228);
-    background: rgb(245, 245, 245);
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.75);
 }
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .logo {
@@ -17,4 +15,39 @@ header {
     font-size: 24pt;
 }
 
+nav ul {
+    display: flex;
+    width: fit-content; // TODO
+    height: 100%;
+    width: auto;
+}
 
+nav ul li {
+    margin: auto 20px;
+    padding: 12px 40px;
+    border: rgb(197, 195, 195) solid 1px;
+    border-radius: 20px;
+}
+
+nav ul li a {
+    // display: block;
+    // padding: 5px 30px 5px 10px;
+    text-decoration: none;
+}
+
+.signup-button {
+  -webkit-transition: background-color 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: background-color 0.5s;
+}
+
+.signup-button:hover {
+    background: #db003b;
+}
+
+.signup-button a {
+    color: white;
+}
+
+.login-button a {
+    color: #666;
+}

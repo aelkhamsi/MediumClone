@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/articles/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CST } from '../../../../constants/ls';
@@ -12,16 +12,19 @@ import { CST } from '../../../../constants/ls';
 export class DashboardComponent implements OnInit {
   username: string;
   articles: any[];
-
-
+  selectedArticle: any;
+  
   constructor(
     public router: Router, 
     public articleService: ArticleService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     var user = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER));
     this.username = user.username;
+
     this.articleService.getAll()
       .subscribe((res) => {
         this.articles = res;
@@ -43,6 +46,11 @@ export class DashboardComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 3000,
     });
+  }
+
+  onSelect(article: any): void {
+    this.selectedArticle = article;
+    console.log(this.selectedArticle);
   }
 
 }

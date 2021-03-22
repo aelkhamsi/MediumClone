@@ -6,8 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent implements OnInit {
-  @Input() title;
-  @Input() author;
+  @Input() id: number;
+  @Input() title: string;
+  @Input() author: string;
   // @Input() date;
 
   constructor() { }

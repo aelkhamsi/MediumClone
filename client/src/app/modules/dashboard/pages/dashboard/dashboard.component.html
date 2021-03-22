@@ -2,16 +2,21 @@
 
 <div class="container">
     <div class="current-article">
-        <app-article title="Article 1" author="Achraf El Khamsi" content="Lorem Ipsum"></app-article>
+        <app-article [article]="selectedArticle"></app-article>
     </div>
     
     <div class="list-articles">
-        <app-article-card *ngFor="let article of articles" [title]="article.name" [author]="article.name"></app-article-card>
+        <ul *ngFor="let article of articles" (click)="onSelect(article)">
+            <app-article-card 
+                [id]="article.id" 
+                [title]="article.name" 
+                [author]="article.name"
+            >
+            </app-article-card>
+        </ul>
     </div>
+    
 </div>
-
-
-
 
 
 <!-- <a href="#" (click)="logout()">Se déconnecter</a> -->
