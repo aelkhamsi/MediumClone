@@ -4,11 +4,15 @@
 
         <nav>
             <ul>
-                <li class="login-button">
+                <li class="myarticles-button secondary-color">
                     <a href="#" routerLink='/my-articles'>My Articles</a>
                 </li>
-                <li class="signup-button primary-color">
+                <li class="create-button primary-color">
                     <a href="#" routerLink='/create'>Create an Article</a>
+                </li>
+
+                <li class="logout-button primary-color" (click)="logout()">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
                 </li>
             </ul>
         </nav>

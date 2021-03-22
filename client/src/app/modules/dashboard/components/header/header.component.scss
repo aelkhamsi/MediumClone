@@ -36,22 +36,35 @@ nav ul li a {
     text-decoration: none;
 }
 
-.signup-button {
+.create-button {
   -webkit-transition: background-color 0.5s; /* For Safari 3.1 to 6.0 */
   transition: background-color 0.5s;
 }
 
-.signup-button:hover {
+.create-button:hover, .logout-button:hover {
     background: #db003b;
+    cursor: pointer;
+    -webkit-transition: background-color 400ms linear;
+    -ms-transition: background-color 400ms linear;
+    transition: background-color 400ms linear;
 }
 
-.signup-button a {
+.create-button a {
     color: white;
 }
 
-.login-button a {
+.myarticles-button a {
     color: #666;
 }
+
+.myarticles-button:hover {
+    cursor: pointer;
+    background: rgb(233, 233, 233);
+    -webkit-transition: background-color 400ms linear;
+    -ms-transition: background-color 400ms linear;
+    transition: background-color 400ms linear;
+}
+
 
 a {
     text-decoration: none !important;
