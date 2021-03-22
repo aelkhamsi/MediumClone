@@ -29,6 +29,10 @@ export class ArticleService {
     return this.http.get<any>(this.ARTICLE_URI + "/article/" + id, this.httpOptions);
   }
 
+  getByUserId(id: number): Observable<any> {
+    return this.http.get<any>(this.ARTICLE_URI + "/article/user/" + id, this.httpOptions);
+  }
+
   addArticle(name: string, content: string): any {
     let user = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER));
 

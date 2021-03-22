@@ -27,7 +27,7 @@ exports.getAll = (req, res) => {
 
 exports.getById = (req, res) => {
     let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getById.sql'), 'utf8');
-    db.query(sql, req.params.id, (err, result) => {
+    db.query(sql, parseInt(req.params.id), (err, result) => {
         if (err) {
             res
                 .status(500)
@@ -43,6 +43,21 @@ exports.getById = (req, res) => {
             res
                 .status(200)
                 .json(result)
+    });
+};
+
+exports.getByUserId = (req, res) => {
+    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getByUserId.sql'), 'utf8');
+    db.query(sql, parseInt(req.params.id), (err, result) => {
+        if (err) {
+            res
+                .status(500)
+                .json({errorMessage: "Internal server error. Please try another time"})
+            throw err;
+        }
+        res
+            .status(200)
+            .json(result)
     });
 };
 

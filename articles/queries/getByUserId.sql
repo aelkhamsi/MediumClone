@@ -2,4 +2,4 @@ SELECT articles.name, articles.content, articles.createdAt, articles.updatedAt, 
 FROM articles 
 JOIN users 
 ON articles.userId = users.id
-WHERE articles.id = ?;
+WHERE users.id = ?;

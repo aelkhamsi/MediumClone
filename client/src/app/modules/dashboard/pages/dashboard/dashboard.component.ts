@@ -10,24 +10,21 @@ import { CST } from '../../../../constants/ls';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  username: string;
   articles: any[];
   selectedArticle: any;
   
   constructor(
     public router: Router, 
     public articleService: ArticleService,
-    private _snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute
+    private _snackBar: MatSnackBar
     ) { }
 
   ngOnInit() {
-    var user = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER));
-    this.username = user.username;
 
     this.articleService.getAll()
       .subscribe((res) => {
         this.articles = res;
+        this.selectedArticle = this.articles[0];
       }, (error) => {
         if (error.status == 500)
           this.openSnackBar("Internal Server error. Please try again later", "Error");

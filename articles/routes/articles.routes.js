@@ -11,6 +11,8 @@ module.exports = (app) => {
 
     app.get("/article/:id", articlesController.getById)
 
+    app.get("/article/user/:id", articlesController.getByUserId)
+
     app.post("/article", articlesController.addArticle);
 
     app.put("/article", articlesController.updateArticle);
