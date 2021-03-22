@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ArticleService } from 'src/app/services/articles/article.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CST } from '../../../../constants/ls';
 
 @Component({
@@ -9,13 +11,26 @@ import { CST } from '../../../../constants/ls';
 })
 export class DashboardComponent implements OnInit {
   username: string;
+  articles: any[];
 
-  constructor(public router: Router) { }
+
+  constructor(
+    public router: Router, 
+    public articleService: ArticleService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     var user = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER));
     this.username = user.username;
-    console.log(user); 
+    this.articleService.getAll()
+      .subscribe((res) => {
+        this.articles = res;
+      }, (error) => {
+        if (error.status == 500)
+          this.openSnackBar("Internal Server error. Please try again later", "Error");
+        else
+          this.openSnackBar(error.errorMessage, "Error");
+      })
   }
 
   logout() {
@@ -23,5 +38,11 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem(CST.LS_LABEL_TOKEN);
     this.router.navigate(['landing']);
   } 
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
 
 }

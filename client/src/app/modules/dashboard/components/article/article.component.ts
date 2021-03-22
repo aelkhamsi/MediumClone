@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ArticleComponent implements OnInit {
   @Input() title;
   @Input() author;
-  @Input() date;
+  // @Input() date;
   @Input() content;
 
   constructor() { }

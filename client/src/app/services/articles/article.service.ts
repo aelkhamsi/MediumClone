@@ -21,6 +21,8 @@ export class ArticleService {
   
 
   getAll(): Observable<any> {
+    console.log("Get All");
+    console.log(this.ARTICLE_URI);
     return this.http.get<any>(this.ARTICLE_URI + "/article", this.httpOptions);
   }
 

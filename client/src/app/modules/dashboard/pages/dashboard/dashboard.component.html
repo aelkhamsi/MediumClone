@@ -6,9 +6,7 @@
     </div>
     
     <div class="list-articles">
-        <app-article-card title="Article 1" author="Achraf El Khamsi"></app-article-card>
-        <app-article-card title="Article 2" author="Achraf El Khamsi"></app-article-card>
-        <app-article-card title="Article 3" author="Achraf El Khamsi"></app-article-card>
+        <app-article-card *ngFor="let article of articles" [title]="article.name" [author]="article.name"></app-article-card>
     </div>
 </div>
 
