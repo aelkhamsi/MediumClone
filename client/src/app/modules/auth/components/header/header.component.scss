@@ -1,0 +1,20 @@
+
+header {
+    width: 100%;
+    height: 80px;
+    box-shadow: 0px 0px 10px 0px #666;
+    //background: rgb(228, 228, 228);
+    background: rgb(245, 245, 245);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    margin: auto 20px;
+    font-size: 24pt;
+}
+
+

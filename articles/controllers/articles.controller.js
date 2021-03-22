@@ -10,7 +10,6 @@ let Article = ArticleModel.Article;
 // articles.push(new Article(3, "Article 3", "Lorem Ipsum 3"));
 
 
-
 exports.getAll = (req, res) => {
     let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getAll.sql'), 'utf8');
     db.query(sql, (err, result) => {

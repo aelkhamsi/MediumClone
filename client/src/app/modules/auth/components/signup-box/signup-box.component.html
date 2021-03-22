@@ -1,0 +1,47 @@
+<div class="container">
+        <div class="login-container">
+    
+            <div class="headline-container">
+                <h1>Sign Up</h1>
+                <p class="grey-text">Already have an account ? <a href="" routerLink='/login'>Log In</a></p>
+            </div>
+            
+    
+            <div class="form-container">
+                <form [formGroup]="signupForm" (submit)="onSubmit()">
+
+                    <!-- Value: {{ signupForm.value | json }} -->
+                    
+                    <mat-form-field class="form-control">
+                        <input matInput placeholder="Username" formControlName="username">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-control">
+                        <input matInput placeholder="Email" formControlName="email">
+                    </mat-form-field>
+    
+                    <mat-form-field class="form-control">
+                        <input matInput placeholder="Password" type="password" formControlName="password">
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    </mat-form-field>
+
+                    <mat-radio-group formControlName="role">
+                        <mat-radio-button value="admin">Admin</mat-radio-button>
+                        <mat-radio-button value="writer">Writer</mat-radio-button>
+                    </mat-radio-group>
+                    
+
+                        
+                    <div class="submit-button-container">
+                        <div>
+                            <mat-checkbox formControlName="keepConnection">Keep me signed in</mat-checkbox>
+                        </div>
+                        
+                        <div class="submit-button-container">
+                            <button mat-raised-button type="submit" class="submit-button primary-color"> Sign Up </button>
+                        </div>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>

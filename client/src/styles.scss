@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+@include mat-core();
+$my-app-primary: mat-palette($mat-blue, 400);
+$my-app-accent: mat-palette($mat-red, 300, A200, A100, A400);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+@include angular-material-theme($my-app-theme);
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+p, blockquote {
+    font-size: .9em; //1em == 16px
+    line-height: 1.6em;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+
+    width: 68%;
+    margin-left: 16%;
+    height: 100%;
+
+    //background: rgb(236, 236, 236);
+}
+
+.primary-color {
+    background: #ff0045;
+    color: white;
+}

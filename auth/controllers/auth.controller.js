@@ -26,11 +26,15 @@ exports.login = (req, res) => {
               username: result[0].username,
               email: result[0].email
             }
-            jwt.sign(user, "iamthegreatestaliveandiamhumble", function(err, token) { //TODO: create env variable for the secret
-              res
+            let token = jwt.sign(user, 'iamthegreatestaliveandiamhumble', { expiresIn: '1h' });
+            res
                 .status(200)
                 .json({id: result[0].id, username: user.username, access_token: token})
-            })
+            // jwt.sign(user, "iamthegreatestaliveandiamhumble", function(err, token) { //TODO: create env variable for the secret
+            //   res
+            //     .status(200)
+            //     .json({id: result[0].id, username: user.username, access_token: token})
+            // })
           }
           else 
           { //Wrong Password

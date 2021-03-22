@@ -1,0 +1,25 @@
+
+section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.presentation {
+    width: 50%;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+// #test-image {
+//     width: 50%; /* you can use % */
+//     height: auto;
+// }
+
+#test-image {
+    height: auto; 
+    width: auto; 
+    max-width: 40%; 
+    max-height: 60%;
+    margin-top: 20px;
+    margin-right: 20px;
+}
