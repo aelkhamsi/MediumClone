@@ -10,6 +10,7 @@ import { ArticleComponent } from './components/article/article.component';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { CreateComponent } from './pages/create/create.component';
 import { MyArticlesComponent } from './pages/my-articles/my-articles.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MyArticlesComponent } from './pages/my-articles/my-articles.component';
     ArticleComponent,
     ArticleCardComponent,
     CreateComponent,
-    MyArticlesComponent
+    MyArticlesComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,

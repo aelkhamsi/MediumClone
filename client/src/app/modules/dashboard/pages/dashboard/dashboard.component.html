@@ -3,6 +3,14 @@
 <div class="container">
     <div class="current-article">
         <app-article [article]="selectedArticle"></app-article>
+
+        <div class="list-comments">
+            <h1>Comments</h1>
+            <ul *ngFor="let comment of comments">
+                <app-comment [comment]="comment"></app-comment>
+            </ul>
+            
+        </div>     
     </div>
     
     <div class="list-articles">
@@ -15,7 +23,7 @@
             </app-article-card>
         </ul>
     </div>
-    
+
 </div>
 
 

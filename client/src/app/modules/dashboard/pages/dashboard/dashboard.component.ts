@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/articles/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CST } from '../../../../constants/ls';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,13 +12,28 @@ import { CST } from '../../../../constants/ls';
 })
 export class DashboardComponent implements OnInit {
   articles: any[];
+  comments: any[] = [
+    {
+      author: "Achraf",
+      content: "I really liked your essay. Good work"
+    },
+    {
+      author: "Ismail",
+      content: "I get your point but i don't agree with you in some points"
+    },
+    {
+      author: "Imane",
+      content: "I totally disagree with you, but i respect your point of view"
+    }
+  ];
   selectedArticle: any;
-  
+  commentForm: FormGroup;
+
   constructor(
     public router: Router, 
     public articleService: ArticleService,
     private _snackBar: MatSnackBar
-    ) { }
+  ) {} 
 
   ngOnInit() {
 
