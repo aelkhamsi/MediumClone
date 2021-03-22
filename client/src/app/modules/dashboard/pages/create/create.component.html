@@ -1,1 +1,40 @@
 <app-header></app-header>>
+
+<div class="container">
+    <div class="create-container">
+
+        <div class="headline-container">
+            <h1>Create an Article</h1>
+        </div>
+        
+
+        <div class="form-container">
+            <form [formGroup]="createForm" (submit)="onSubmit()">
+                
+                <!-- Value : {{ loginForm.value | json }} -->
+
+                <mat-form-field class="form-control">
+                    <input matInput placeholder="Title" formControlName="title">
+                </mat-form-field>
+
+                <mat-form-field class="form-control">
+                    <mat-label>Content</mat-label>
+                    <textarea 
+                        matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                        formControlName="content">
+                    </textarea>
+                </mat-form-field>
+
+                <div class="submit-button-container">                    
+                    <div class="submit-button-container">
+                        <button mat-raised-button type="submit" class="submit-button primary-color"> Submit </button>
+                    </div>
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>

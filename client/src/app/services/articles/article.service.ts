@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseDTO } from '../../models/response-dto';
 import { environment } from '../../../environments/environment';
+import { CST } from 'src/app/constants/ls';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,22 @@ export class ArticleService {
   
 
   getAll(): Observable<any> {
-    console.log("Get All");
-    console.log(this.ARTICLE_URI);
     return this.http.get<any>(this.ARTICLE_URI + "/article", this.httpOptions);
   }
 
   getById(id: number): Observable<any> {
     return this.http.get<any>(this.ARTICLE_URI + "/article/" + id, this.httpOptions);
+  }
+
+  addArticle(name: string, content: string): any {
+    let user = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER));
+
+    let article = {
+      name: name,
+      content: content,
+      userId: user.id
+    }
+    return this.http.post<any>(this.ARTICLE_URI + "/article", article, this.httpOptions)
   }
   
 }
