@@ -39,8 +39,7 @@ export class LoginBoxComponent implements OnInit {
     // currently, keepConnection field is not used
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((response: any) => {
-        localStorage.setItem(CST.LS_LABEL_ID, response.id);
-        localStorage.setItem(CST.LS_LABEL_USER, response.username);
+        localStorage.setItem(CST.LS_LABEL_USER, JSON.stringify(response.user));
         localStorage.setItem(CST.LS_LABEL_TOKEN, response.access_token);
 
         this.router.navigate(['dashboard']);

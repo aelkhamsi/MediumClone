@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CST } from '../../../constants/ls';
+import { CST } from '../../../../constants/ls';
 
 @Component({
   selector: 'app-dashboard',
