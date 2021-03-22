@@ -46,11 +46,12 @@ exports.getById = (req, res) => {
 };
 
 exports.addArticle = (req, res) => {
+    let userId = req.body.userId;
     let name = req.body.name;
     let content = req.body.content;
 
-    if (name && content) {
-        let article = new Article(name, content);
+    if (userId && name && content) {
+        let article = new Article(userId, name, content);
         let sql = fs.readFileSync(path.resolve(__dirname, '../queries/addArticle.sql'), 'utf8');
         db.query(sql, article, (err, result) => {
             if (err) 

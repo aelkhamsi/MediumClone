@@ -1,6 +1,7 @@
 
 class Article {
-    constructor(name, content, draft) {
+    constructor(userId, name, content, draft) {
+        this.userId = userId;
         this.name = name;
         this.reference = null;
         this.content = content;
