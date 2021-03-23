@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/auth/auth.service';
-import { ResponseDTO } from 'src/app/models/response-dto';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -45,5 +44,4 @@ export class SignupBoxComponent implements OnInit {
         this.signupForm.reset();
       });
   }
-
 }

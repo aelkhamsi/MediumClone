@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CST } from 'src/app/constants/ls';
+import { Article } from 'src/app/models/Article';
+import { ArticleReadDto, ArticleWriteDto } from 'src/app/models/ArticleDto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,27 +22,23 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
   
 
-  getAll(): Observable<any> {
-    return this.http.get<any>(this.ARTICLE_URI + "/article", this.httpOptions);
+  getAll(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.ARTICLE_URI + "/article", this.httpOptions);
   }
 
-  getById(id: number): Observable<any> {
-    return this.http.get<any>(this.ARTICLE_URI + "/article/" + id, this.httpOptions);
+  getById(id: number): Observable<Article[]> {
+    return this.http.get<Article[]>(this.ARTICLE_URI + "/article/" + id, this.httpOptions);
   }
 
-  getByUserId(id: number): Observable<any> {
-    return this.http.get<any>(this.ARTICLE_URI + "/article/user/" + id, this.httpOptions);
+  getByUserId(id: number): Observable<Article[]> {
+    return this.http.get<Article[]>(this.ARTICLE_URI + "/article/user/" + id, this.httpOptions);
   }
 
-  addArticle(name: string, content: string): any {
+  addArticle(name: string, content: string): Observable<ArticleReadDto> {
     let user = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER));
 
-    let article = {
-      name: name,
-      content: content,
-      userId: user.id
-    }
-    return this.http.post<any>(this.ARTICLE_URI + "/article", article, this.httpOptions);
+    let article: ArticleWriteDto = {name: name, content: content, userId: user.id}
+    return this.http.post<ArticleReadDto>(this.ARTICLE_URI + "/article", article, this.httpOptions);
   }
   
 }
