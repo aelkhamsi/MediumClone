@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const queries = require('../queries/comments-queries');
+let Comment = require('../models/Comment.js');
 
 // exports.getAll = (req, res) => {
 
@@ -10,7 +12,8 @@ const path = require('path');
 // }
 
 exports.getByArticleId = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/comments/getByArticleId.sql'), 'utf8');
+    //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/comments/getByArticleId.sql'), 'utf8');
+    let sql = queries.QUERY_GET_BY_ARTICLE_ID;
     db.query(sql, parseInt(req.params.id), (err, result) => {
         if (err) {
             res
@@ -25,17 +28,19 @@ exports.getByArticleId = (req, res) => {
 }
 
 exports.addComment = (req, res) => {
-    let userId = req.body.userId;
-    let articleId = req.body.articleId;
-    let comment = req.body.comment;
     
-    if (userId && articleId && comment) {
+    if (req.body.userId && req.body.articleId && req.body.comment) {
+        let comment = new Comment(req.body.userId, req.body.articleId, req.body.comment);
         let sql = `INSERT INTO comments SET ?;`;
-        db.query(sql, {userId, articleId, comment}, (err, result) => {
-            if (err) 
+
+        db.query(sql, comment, (err, result) => {
+            if (err) {
+                console.log(err);
                 res
                     .status(500)
                     .json({errorMessage: "Internal server error. Please try another time"})
+            }
+                
             else
                 res
                     .status(200)

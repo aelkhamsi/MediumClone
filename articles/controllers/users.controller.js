@@ -1,3 +1,4 @@
+let User = require('../models/User.js');
 
 
 exports.getAll = (req, res) => {
@@ -21,22 +22,18 @@ exports.getById = (req, res) => {
     if (id) {
         let sql = `SELECT * FROM users WHERE id = ?`;
         let query = db.query(sql, id, (err, result) => {
-            if (err) {
-                console.log(err);
+            if (err) 
                 res
                   .status(500)
                   .json({errorMessage: "Internal server error. Please try another time1"})
-            }
-            else if (result.length == 0) {
+            else if (result.length == 0)
                 res 
                     .status(404)
                     .json({errorMessage: "User Not Found"})
-            }
-            else {
+            else
                 res
                     .status(200)
                     .json(result[0])
-            }
         })
     } else {
         res
