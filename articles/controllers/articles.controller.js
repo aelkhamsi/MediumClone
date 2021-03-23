@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const queries = require('../queries/articles-queries');
 let ArticleModel = require('../models/article.js');
 let Article = ArticleModel.Article;
 
@@ -11,7 +12,8 @@ let Article = ArticleModel.Article;
 
 
 exports.getAll = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getAll.sql'), 'utf8');
+    //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getAll.sql'), 'utf8');
+    let sql = queries.QUERY_GET_ALL;
     db.query(sql, (err, result) => {
         if (err) {
             console.log(err);
@@ -26,7 +28,8 @@ exports.getAll = (req, res) => {
 };
 
 exports.getById = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
+    //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
+    let sql = queries.QUERY_GET_BY_ID;
     db.query(sql, parseInt(req.params.id), (err, result) => {
         if (err) {
             res
@@ -47,7 +50,8 @@ exports.getById = (req, res) => {
 };
 
 exports.getByUserId = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getByUserId.sql'), 'utf8');
+    //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getByUserId.sql'), 'utf8');
+    let sql = queries.QUERY_GET_BY_USER_ID;
     db.query(sql, parseInt(req.params.id), (err, result) => {
         if (err) {
             res
@@ -68,7 +72,8 @@ exports.addArticle = (req, res) => {
 
     if (userId && name && content) {
         let article = new Article(userId, name, content);
-        let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/addArticle.sql'), 'utf8');
+        //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/addArticle.sql'), 'utf8');
+        let sql = queries.QUERY_ADD_ARTICLE;
         db.query(sql, article, (err, result) => {
             if (err) {
                 console.log(err);
@@ -92,81 +97,81 @@ exports.addArticle = (req, res) => {
     }
 };
 
-exports.updateArticle = (req, res) => {
-    let id = req.body.id;
-    let name = req.body.name;
-    let content = req.body.content;
+// exports.updateArticle = (req, res) => {
+//     let id = req.body.id;
+//     let name = req.body.name;
+//     let content = req.body.content;
 
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
-    db.query(sql, id, (err, result) => {
-        if (err) {
-            res
-                .status(500)
-                .json({errorMessage: "Internal server error. Please try another time"})
-            throw err;
-        } else if (result.length == 0) {
-            res
-                .status(404)
-                .json({errorMessage: "Not Found"})
+//     //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
+//     db.query(sql, id, (err, result) => {
+//         if (err) {
+//             res
+//                 .status(500)
+//                 .json({errorMessage: "Internal server error. Please try another time"})
+//             throw err;
+//         } else if (result.length == 0) {
+//             res
+//                 .status(404)
+//                 .json({errorMessage: "Not Found"})
         
-        } else if (id && name && content) {
-            //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/updateArticle.sql'), 'utf8');
-            let sql = `UPDATE articles SET name = "${name}", content = "${content}" WHERE id = ${id};`
-            db.query(sql, (err, result) => {
-                if (err) {
-                    res
-                        .status(500)
-                        .json({errorMessage: "Internal server error. Please try another time"})
-                    throw err;
-                }
+//         } else if (id && name && content) {
+//             //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/updateArticle.sql'), 'utf8');
+//             let sql = `UPDATE articles SET name = "${name}", content = "${content}" WHERE id = ${id};`
+//             db.query(sql, (err, result) => {
+//                 if (err) {
+//                     res
+//                         .status(500)
+//                         .json({errorMessage: "Internal server error. Please try another time"})
+//                     throw err;
+//                 }
                     
-                else 
-                    res
-                        .status(200)
-                        .json({message: "Article updated"})
-            });
-        } else {
-            res
-                .status(400)
-                .json({message: "Missing fields"})
-        }
-    });
+//                 else 
+//                     res
+//                         .status(200)
+//                         .json({message: "Article updated"})
+//             });
+//         } else {
+//             res
+//                 .status(400)
+//                 .json({message: "Missing fields"})
+//         }
+//     });
 
-};
+// };
 
-exports.deleteArticle = (req, res) => {
-    let id = req.body.id;
+// exports.deleteArticle = (req, res) => {
+//     let id = req.body.id;
 
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
-    db.query(sql, id, (err, result) => {
-        if (err) {
-            res
-                .status(500)
-                .json({errorMessage: "Internal server error. Please try another time"})
-            throw err;
-        } else if (result.length == 0) {
-            res
-                .status(404)
-                .json({errorMessage: "Not Found"})
-        } else if (id) {
-            let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/deleteArticle.sql'), 'utf8');
-            db.query(sql, id, (err, result) => {
-                if (err) {
-                    res
-                        .status(500)
-                        .json({errorMessage: "Internal server error. Please try another time"})
-                    throw err;
-                }
-                else
-                    res
-                        .status(200)
-                        .json({message: "Article deleted"})   
-            });
-        } 
-        else 
-            res
-                .status(400)
-                .json({message: "Missing fields"})  
-    })
-};
+//     let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
+//     db.query(sql, id, (err, result) => {
+//         if (err) {
+//             res
+//                 .status(500)
+//                 .json({errorMessage: "Internal server error. Please try another time"})
+//             throw err;
+//         } else if (result.length == 0) {
+//             res
+//                 .status(404)
+//                 .json({errorMessage: "Not Found"})
+//         } else if (id) {
+//             let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/deleteArticle.sql'), 'utf8');
+//             db.query(sql, id, (err, result) => {
+//                 if (err) {
+//                     res
+//                         .status(500)
+//                         .json({errorMessage: "Internal server error. Please try another time"})
+//                     throw err;
+//                 }
+//                 else
+//                     res
+//                         .status(200)
+//                         .json({message: "Article deleted"})   
+//             });
+//         } 
+//         else 
+//             res
+//                 .status(400)
+//                 .json({message: "Missing fields"})  
+//     })
+// };
 

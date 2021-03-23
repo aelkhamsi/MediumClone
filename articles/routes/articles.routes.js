@@ -19,8 +19,8 @@ module.exports = (app) => {
     app.post("/article", articlesController.addArticle);
 
     //PUT
-    app.put("/article", articlesController.updateArticle);
+    //app.put("/article", articlesController.updateArticle);
 
     //DELETE
-    app.delete("/article", articlesController.deleteArticle);
+    //app.delete("/article", articlesController.deleteArticle);
 }
