@@ -11,7 +11,7 @@ let Article = ArticleModel.Article;
 
 
 exports.getAll = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getAll.sql'), 'utf8');
+    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getAll.sql'), 'utf8');
     db.query(sql, (err, result) => {
         if (err) {
             console.log(err);
@@ -26,7 +26,7 @@ exports.getAll = (req, res) => {
 };
 
 exports.getById = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getById.sql'), 'utf8');
+    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
     db.query(sql, parseInt(req.params.id), (err, result) => {
         if (err) {
             res
@@ -47,7 +47,7 @@ exports.getById = (req, res) => {
 };
 
 exports.getByUserId = (req, res) => {
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getByUserId.sql'), 'utf8');
+    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getByUserId.sql'), 'utf8');
     db.query(sql, parseInt(req.params.id), (err, result) => {
         if (err) {
             res
@@ -68,7 +68,7 @@ exports.addArticle = (req, res) => {
 
     if (userId && name && content) {
         let article = new Article(userId, name, content);
-        let sql = fs.readFileSync(path.resolve(__dirname, '../queries/addArticle.sql'), 'utf8');
+        let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/addArticle.sql'), 'utf8');
         db.query(sql, article, (err, result) => {
             if (err) 
                 res
@@ -94,7 +94,7 @@ exports.updateArticle = (req, res) => {
     let name = req.body.name;
     let content = req.body.content;
 
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getById.sql'), 'utf8');
+    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
     db.query(sql, id, (err, result) => {
         if (err) {
             res
@@ -107,7 +107,7 @@ exports.updateArticle = (req, res) => {
                 .json({errorMessage: "Not Found"})
         
         } else if (id && name && content) {
-            //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/updateArticle.sql'), 'utf8');
+            //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/updateArticle.sql'), 'utf8');
             let sql = `UPDATE articles SET name = "${name}", content = "${content}" WHERE id = ${id};`
             db.query(sql, (err, result) => {
                 if (err) {
@@ -134,7 +134,7 @@ exports.updateArticle = (req, res) => {
 exports.deleteArticle = (req, res) => {
     let id = req.body.id;
 
-    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/getById.sql'), 'utf8');
+    let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/getById.sql'), 'utf8');
     db.query(sql, id, (err, result) => {
         if (err) {
             res
@@ -146,7 +146,7 @@ exports.deleteArticle = (req, res) => {
                 .status(404)
                 .json({errorMessage: "Not Found"})
         } else if (id) {
-            let sql = fs.readFileSync(path.resolve(__dirname, '../queries/deleteArticle.sql'), 'utf8');
+            let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/deleteArticle.sql'), 'utf8');
             db.query(sql, id, (err, result) => {
                 if (err) {
                     res
