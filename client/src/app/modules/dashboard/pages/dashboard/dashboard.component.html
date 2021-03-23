@@ -9,8 +9,19 @@
             <ul *ngFor="let comment of comments">
                 <app-comment [comment]="comment"></app-comment>
             </ul>
+
             
-        </div>     
+            <form [formGroup]="commentForm" (submit)="onComment()">    
+                
+                <div class="comment-form-container">
+                    <mat-form-field class="form-control">
+                        <input matInput placeholder="Comment" formControlName="comment" class="comment-input">
+                    </mat-form-field>
+                
+                    <button mat-raised-button type="submit" class="primary-color"> Comment </button>
+                </div>
+            </form>
+        </div>      
     </div>
     
     <div class="list-articles">

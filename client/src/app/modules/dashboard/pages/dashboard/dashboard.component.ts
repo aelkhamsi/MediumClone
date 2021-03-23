@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/articles/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CST } from '../../../../constants/ls';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -32,10 +33,14 @@ export class DashboardComponent implements OnInit {
   constructor(
     public router: Router, 
     public articleService: ArticleService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private fb: FormBuilder, 
   ) {} 
 
   ngOnInit() {
+    this.commentForm = this.fb.group({
+      comment: ['', Validators.required]
+    })
 
     this.articleService.getAll()
       .subscribe((res) => {
@@ -64,6 +69,16 @@ export class DashboardComponent implements OnInit {
   onSelect(article: any): void {
     this.selectedArticle = article;
     console.log(this.selectedArticle);
+  }
+
+  onComment(): void {
+    let userId = JSON.parse(localStorage.getItem(CST.LS_LABEL_USER)).id;
+    let articleId = this.selectedArticle.id;
+    let comment = this.commentForm.value.comment;
+
+    console.log(userId);
+    console.log(articleId);
+    console.log(comment);
   }
 
 }

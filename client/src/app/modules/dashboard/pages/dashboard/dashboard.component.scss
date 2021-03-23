@@ -26,9 +26,7 @@
 .list-comments {
     box-shadow: 4px 3px 8px -1px rgba(84,67,67,0.75);
     background: #fffefb;
-    width: 100%;
     line-height: 0.5em;
-    margin-bottom: 2em;
 }
 
 ul {
@@ -38,6 +36,9 @@ ul {
     margin-bottom: 1em;
 }
 
+.submit-button:hover {
+    background: #db003b;
+}
 
 /* Split the screen in half */
 
@@ -48,4 +49,8 @@ ul {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+  }
+
+  .comment-form-container {
+      margin-left: 2%;
   }
