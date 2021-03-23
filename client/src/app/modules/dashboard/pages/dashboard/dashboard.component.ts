@@ -35,6 +35,15 @@ export class DashboardComponent implements OnInit {
       .subscribe((res) => {
         this.articles = res;
         this.selectedArticle = this.articles[0];
+        this.commentService.getByArticleId(this.selectedArticle.id)
+          .subscribe((res) => {
+            this.comments = res;
+          }, (error) => {
+            if (error.status == 500)
+              this.openSnackBar("Internal Server error. Please try again later", "Error");
+            else
+              this.openSnackBar(error.errorMessage, "Error");
+          })
       }, (error) => {
         if (error.status == 500)
           this.openSnackBar("Internal Server error. Please try again later", "Error");
@@ -42,17 +51,17 @@ export class DashboardComponent implements OnInit {
           this.openSnackBar(error.errorMessage, "Error");
       })
     
-    if (this.selectedArticle) {
-      this.commentService.getByArticleId(this.selectedArticle.id)
-        .subscribe((res) => {
-          this.comments = res;
-        }, (error) => {
-          if (error.status == 500)
-            this.openSnackBar("Internal Server error. Please try again later", "Error");
-          else
-            this.openSnackBar(error.errorMessage, "Error");
-        })
-    } 
+    // if (this.selectedArticle) {
+    //   this.commentService.getByArticleId(this.selectedArticle.id)
+    //     .subscribe((res) => {
+    //       this.comments = res;
+    //     }, (error) => {
+    //       if (error.status == 500)
+    //         this.openSnackBar("Internal Server error. Please try again later", "Error");
+    //       else
+    //         this.openSnackBar(error.errorMessage, "Error");
+    //     })
+    // } 
   }
 
   logout() {
@@ -86,9 +95,23 @@ export class DashboardComponent implements OnInit {
     let articleId = this.selectedArticle.id;
     let comment = this.commentForm.value.comment;
 
-    console.log(userId);
-    console.log(articleId);
-    console.log(comment);
+    this.commentService.addComment(userId, articleId, comment)
+      .subscribe((res) => {
+        console.log(this.comments);
+        this.comments.push({
+          userId,
+          articleId,
+          comment,
+          username: JSON.parse(localStorage.getItem(CST.LS_LABEL_USER)).username
+        })
+      }, (error) => {
+        if (error.status == 500)
+          this.openSnackBar("Internal Server error. Please try again later", "Error");
+        else
+          this.openSnackBar(error.errorMessage, "Error");
+      })
+    
+    this.commentForm.reset();
   }
 
 }

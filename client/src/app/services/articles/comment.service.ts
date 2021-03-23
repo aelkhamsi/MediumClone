@@ -19,5 +19,9 @@ export class CommentService {
     return this.http.get<any>(this.ARTICLE_URI + '/comment/article/' + articleId, this.httpOptions);
   }
 
+  addComment(userId: number, articleId: number, comment: string) {
+    return this.http.post<any>(this.ARTICLE_URI + '/comment', {userId, articleId, comment}, this.httpOptions);
+  }
+  
   constructor(private http: HttpClient) { }
 }

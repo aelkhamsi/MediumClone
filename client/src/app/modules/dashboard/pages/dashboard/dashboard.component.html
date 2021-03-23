@@ -10,9 +10,7 @@
                 <app-comment [comment]="comment"></app-comment>
             </ul>
 
-            
             <form [formGroup]="commentForm" (submit)="onComment()">    
-                
                 <div class="comment-form-container">
                     <mat-form-field class="form-control">
                         <input matInput placeholder="Comment" formControlName="comment" class="comment-input">
