@@ -1,10 +1,9 @@
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize('medium', 'root', "test", {
+const sequelize = new Sequelize('medium', 'achraf', "Zizoafrape07!", {
     host: 'localhost',
-    port: 8111,
     dialect: "mysql",
-    operatorsAliases: false
+    //operatorsAliases: false
 })
 
 module.exports = sequelize;

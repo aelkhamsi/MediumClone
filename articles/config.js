@@ -2,10 +2,13 @@ const mysql = require('mysql');
 
 const db = mysql.createConnection({
     host: "localhost",
-    port: 3307,
-	user: "root",
+	user: "achraf",
+	password: "Zizoafrape07!",
 	database:"medium",
 	multipleStatements: true
 });
 
 module.exports = db;
+
+
+

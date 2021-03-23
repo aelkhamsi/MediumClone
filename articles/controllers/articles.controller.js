@@ -70,10 +70,13 @@ exports.addArticle = (req, res) => {
         let article = new Article(userId, name, content);
         let sql = fs.readFileSync(path.resolve(__dirname, '../queries/articles/addArticle.sql'), 'utf8');
         db.query(sql, article, (err, result) => {
-            if (err) 
+            if (err) {
+                console.log(err);
                 res
                     .status(500)
                     .json({errorMessage: "Internal server error. Please try another time"})
+            }
+                
             else
                 res
                     .status(200)

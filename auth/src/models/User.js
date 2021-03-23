@@ -7,10 +7,16 @@ module.exports = sequelize.define("User", {
         type: Sequelize.INTEGER(11),
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
     },
     username: Sequelize.STRING(255),
-    email: Sequelize.STRING(255),
+    email: {
+        type: Sequelize.STRING(255),
+        unique: true
+    },
     password: Sequelize.STRING(255),
     role: Sequelize.STRING(255)
+},{
+    freezeTableName: true,
+    tableName: 'users'
 })

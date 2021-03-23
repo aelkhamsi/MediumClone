@@ -28,6 +28,8 @@ require('./routes/articles.routes')(app);
 
 require('./routes/comments.routes')(app);
 
+require('./routes/users.routes')(app);
+
 
 ///////////////////////////
 /// DATABASE CONNECTION ///
@@ -56,8 +58,8 @@ setInterval(function () { //to keep the connection alive, make frequent quries t
 // let sql = `CREATE TABLE comments(id int AUTO_INCREMENT, userId int, articleId int, comment VARCHAR(255), PRIMARY KEY(id), FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(articleId) REFERENCES articles(id)
 // )`;
 // db.query(sql, (err, result) => {
-//   if (err) throw err;
-//   console.log("Comments Table Created...");
+//    if (err) throw err;
+//    console.log("Comments Table Created...");
 // })
 //////////////////
 ///// LISTEN /////
