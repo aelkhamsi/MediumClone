@@ -24,11 +24,11 @@ app.use( (req, res, next ) => {
 //// ROUTES ////
 ////////////////
 
-require('./routes/articles.routes')(app);
+require('./src/routes/articles.routes')(app);
 
-require('./routes/comments.routes')(app);
+require('./src/routes/comments.routes')(app);
 
-require('./routes/users.routes')(app);
+require('./src/routes/users.routes')(app);
 
 
 ///////////////////////////

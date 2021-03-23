@@ -1,5 +1,4 @@
 
-
 module.exports = {
     QUERY_ADD_ARTICLE: `INSERT INTO articles SET ?;`,
     QUERY_GET_ALL: `SELECT articles.id, articles.name, articles.content, articles.createdAt, articles.updatedAt, users.username 
