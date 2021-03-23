@@ -103,4 +103,4 @@ exports.checkToken = (req, res) => {
         .status(401)
         .json({errorMessage: "The token is not provided"})
     }
-  }
+}
