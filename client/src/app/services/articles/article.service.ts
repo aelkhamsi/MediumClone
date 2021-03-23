@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseDTO } from '../../models/response-dto';
 import { environment } from '../../../environments/environment';
 import { CST } from 'src/app/constants/ls';
 

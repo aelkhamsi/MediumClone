@@ -10,6 +10,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material';
+import { CommentService } from './services/articles/comment.service';
 
 export function tokenGetter() {
   return localStorage.getItem("x-access-token");
@@ -38,7 +39,7 @@ export function tokenGetter() {
     DashboardModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

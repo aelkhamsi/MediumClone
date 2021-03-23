@@ -4,6 +4,7 @@ import { ArticleService } from 'src/app/services/articles/article.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CST } from '../../../../constants/ls';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommentService } from 'src/app/services/articles/comment.service';
 
 
 @Component({
@@ -13,26 +14,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
   articles: any[];
-  comments: any[] = [
-    {
-      author: "Achraf",
-      content: "I really liked your essay. Good work"
-    },
-    {
-      author: "Ismail",
-      content: "I get your point but i don't agree with you in some points"
-    },
-    {
-      author: "Imane",
-      content: "I totally disagree with you, but i respect your point of view"
-    }
-  ];
+  comments: any[];
   selectedArticle: any;
   commentForm: FormGroup;
 
   constructor(
     public router: Router, 
     public articleService: ArticleService,
+    public commentService: CommentService,
     private _snackBar: MatSnackBar,
     private fb: FormBuilder, 
   ) {} 
@@ -52,6 +41,18 @@ export class DashboardComponent implements OnInit {
         else
           this.openSnackBar(error.errorMessage, "Error");
       })
+    
+    if (this.selectedArticle) {
+      this.commentService.getByArticleId(this.selectedArticle.id)
+        .subscribe((res) => {
+          this.comments = res;
+        }, (error) => {
+          if (error.status == 500)
+            this.openSnackBar("Internal Server error. Please try again later", "Error");
+          else
+            this.openSnackBar(error.errorMessage, "Error");
+        })
+    } 
   }
 
   logout() {
@@ -68,7 +69,16 @@ export class DashboardComponent implements OnInit {
 
   onSelect(article: any): void {
     this.selectedArticle = article;
-    console.log(this.selectedArticle);
+    this.commentService.getByArticleId(this.selectedArticle.id)
+        .subscribe((res) => {
+          this.comments = res;
+          //console.log(this.comments);
+        }, (error) => {
+          if (error.status == 500)
+            this.openSnackBar("Internal Server error. Please try again later", "Error");
+          else
+            this.openSnackBar(error.errorMessage, "Error");
+        })
   }
 
   onComment(): void {
