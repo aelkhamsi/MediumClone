@@ -7,4 +7,6 @@ module.exports = (app) => {
     // app.get("comment/:id", commentsController.getById)
 
     app.get("/comment/article/:id", commentsController.getByArticleId)
+
+    app.post("/comment", commentsController.addComment);
 }

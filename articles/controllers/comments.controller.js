@@ -23,3 +23,29 @@ exports.getByArticleId = (req, res) => {
             .json(result)
     });
 }
+
+exports.addComment = (req, res) => {
+    let userId = req.body.userId;
+    let articleId = req.body.articleId;
+    let comment = req.body.comment;
+    
+    if (userId && articleId && comment) {
+        let sql = `INSERT INTO comments SET ?;`;
+        db.query(sql, {userId, articleId, comment}, (err, result) => {
+            if (err) 
+                res
+                    .status(500)
+                    .json({errorMessage: "Internal server error. Please try another time"})
+            else
+                res
+                    .status(200)
+                    .json({
+                        message: "Comment added"
+                    })
+        });
+    } else {
+        res
+            .status(400)
+            .json({errorMessage: "Missing fields"})
+    }
+}
