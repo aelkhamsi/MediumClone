@@ -4,13 +4,14 @@ import { NgModule } from '@angular/core';
 import { LandingModule } from './modules/landing/landing.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material';
 import { CommentService } from './services/articles/comment.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 export function tokenGetter() {
   return localStorage.getItem("x-access-token");
@@ -39,7 +40,12 @@ export function tokenGetter() {
     DashboardModule,
     AppRoutingModule,
   ],
-  providers: [CommentService],
+  providers: [CommentService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

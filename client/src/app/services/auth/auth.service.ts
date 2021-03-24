@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { LoginReadDto, LoginWriteDto } from 'src/app/models/DTOs/LoginDto';
 import { SignupWriteDto } from 'src/app/models/DTOs/SignupDto';
 import { User } from 'src/app/models/User';
+import { CST } from 'src/app/constants/ls';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class AuthService {
   signup(username: string, email: string, password: string, role: string): Observable<User> {
     var data: SignupWriteDto = {username, email, password, role}
     return this.http.post<User>(this.SERVER_URI + this.SIGNUP_URL, data, this.httpOptions);
+  }
+
+  getToken(): string {
+    return localStorage.getItem(CST.LS_LABEL_TOKEN);
   }
 }
