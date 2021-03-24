@@ -23,7 +23,7 @@
     </div>
     
     <div class="list-articles">
-        <ul *ngFor="let article of articles" (click)="onSelect(article)">
+        <ul *ngFor="let article of articles" (click)="onSelectFromList(article)">
             <app-article-card 
                 [id]="article.id" 
                 [title]="article.name" 

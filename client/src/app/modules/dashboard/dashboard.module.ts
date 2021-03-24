@@ -11,6 +11,7 @@ import { ArticleCardComponent } from './components/article-card/article-card.com
 import { CreateComponent } from './pages/create/create.component';
 import { MyArticlesComponent } from './pages/my-articles/my-articles.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { SingleArticleComponent } from './pages/single-article/single-article.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CommentComponent } from './components/comment/comment.component';
     ArticleCardComponent,
     CreateComponent,
     MyArticlesComponent,
-    CommentComponent
+    CommentComponent,
+    SingleArticleComponent
   ],
   imports: [
     CommonModule,

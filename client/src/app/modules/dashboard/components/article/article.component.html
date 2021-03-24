@@ -1,5 +1,8 @@
 <div *ngIf="article" class="container sticky">
-    <h1> {{article.name}}</h1>
+    <div class="article-header">
+        <h1> {{article.name}}</h1> 
+        <i *ngIf="expandButtonToggle" class="fas fa-expand" (click)="onExpand()"></i>
+    </div>
     <p> <span class="bold"> Author: </span>  {{article.username}} | <span class="bold"> Published at: </span> {{article.createdAt.substring(0, 10)}} </p> 
     <p> 
         {{article.content}}

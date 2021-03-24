@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateComponent } from './pages/create/create.component';
 import { AuthGuard } from 'src/app/guards/auth/auth.guard';
 import { MyArticlesComponent } from './pages/my-articles/my-articles.component';
+import { SingleArticleComponent } from './pages/single-article/single-article.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'my-articles',
     component: MyArticlesComponent,
     canActivate: [AuthGuard] 
+  },
+  {
+    path: 'article/:id',
+    component: SingleArticleComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
