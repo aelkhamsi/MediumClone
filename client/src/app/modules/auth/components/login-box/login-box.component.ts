@@ -36,7 +36,6 @@ export class LoginBoxComponent implements OnInit {
 
   onSubmit() {
     // currently, keepConnection field is not used
-    console.log("Submit");
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((response: any) => {
         localStorage.setItem(CST.LS_LABEL_USER, JSON.stringify(response.user));

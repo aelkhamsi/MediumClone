@@ -39,7 +39,7 @@ export class AuthService {
   getToken(): string {
     let token = localStorage.getItem(CST.LS_LABEL_TOKEN);
     if (token)
-      return token
+      return token;
     return '';
   }
 }

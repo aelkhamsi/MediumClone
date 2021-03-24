@@ -12,11 +12,13 @@ export class TokenInterceptorService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authService = this.injector.get(AuthService);
+    
     let tokenizedReq = req.clone({
       setHeaders: {
-        'x-access-token': authService.getToken()
+        Authorization: `Bearer ${authService.getToken()}`
       }
     })
+
     return next.handle(tokenizedReq);
   }
 }

@@ -91,12 +91,12 @@ exports.checkToken = (req, res) => {
           } else {
             res
               .status(200)
-              .json({message: "The token is valid"})
+              .json({message: "valid"})
           }
         });
     } else {
       res
         .status(401)
-        .json({errorMessage: "The token is not provided"})
+        .json({errorMessage: "not valid"})
     }
 }
