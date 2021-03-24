@@ -2,7 +2,6 @@ const queries = require('../queries/articles-queries');
 
 class ArticleRepository {
 
-
     getAll() {
         return new Promise((resolve, reject) => {
             let sql = queries.QUERY_GET_ALL;
