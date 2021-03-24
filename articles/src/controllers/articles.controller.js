@@ -1,59 +1,54 @@
-const fs = require('fs');
-const path = require('path');
-const queries = require('../queries/articles-queries');
 let Article = require('../models/Article.js');
-
-
+const articleRepository = require('../repositories/ArticleRepository');
 
 exports.getAll = (req, res) => {
-    let sql = queries.QUERY_GET_ALL;
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.log(err);
-            res
-                .status(500)
-                .json({errorMessage: "Internal server error. Please try another time1"})
-        }
-        res
-            .status(200)
-            .json(result)
-    });
-};
-
-exports.getById = (req, res) => {
-    let sql = queries.QUERY_GET_BY_ID;
-    db.query(sql, parseInt(req.params.id), (err, result) => {
-        if (err) {
-            res
-                .status(500)
-                .json({errorMessage: "Internal server error. Please try another time"})
-            throw err;
-        }
-        else if (result.length == 0) 
-            res
-                .status(404)
-                .json({errorMessage: "Not Found"})
-        
-        else
+    articleRepository.getAll()
+        .then((result) => {
             res
                 .status(200)
                 .json(result)
-    });
+        })
+        .catch((err) => {
+            res
+                .status(500)
+                .json({errorMessage: "Internal server error. Please try another time1"})
+        })
 };
 
-exports.getByUserId = (req, res) => {
-    let sql = queries.QUERY_GET_BY_USER_ID;
-    db.query(sql, parseInt(req.params.id), (err, result) => {
-        if (err) {
+
+exports.getById = (req, res) => {
+    articleRepository.getById(req.params.id)
+        .then((result) => {
+            if (result.length == 0) 
+                res
+                    .status(404)
+                    .json({errorMessage: "Not Found"})
+        
+            else
+                res
+                    .status(200)
+                    .json(result)
+        })
+        .catch((err) => {
+            console.log(err);
             res
                 .status(500)
                 .json({errorMessage: "Internal server error. Please try another time"})
-            throw err;
-        }
-        res
-            .status(200)
-            .json(result)
-    });
+        })  
+};
+
+exports.getByUserId = (req, res) => {
+    articleRepository.getByUserId(req.params.id)
+        .then((result) => {
+            res
+                .status(200)
+                .json(result)
+        })
+        .catch((err) => {
+            res
+                .status(500)
+                .json({errorMessage: "Internal server error. Please try another time"})
+        })
 };
 
 exports.addArticle = (req, res) => {
@@ -63,23 +58,20 @@ exports.addArticle = (req, res) => {
 
     if (userId && name && content) {
         let article = new Article(userId, name, content);
-        let sql = queries.QUERY_ADD_ARTICLE;
-        db.query(sql, article, (err, result) => {
-            if (err) {
-                console.log(err);
-                res
-                    .status(500)
-                    .json({errorMessage: "Internal server error. Please try another time"})
-            }
-                
-            else
+        articleRepository.add(article)
+            .then((result) => {
                 res
                     .status(200)
                     .json({
                         message: "Article added",
                         id: article.id
                     })
-        });
+            })
+            .catch((err) => {
+                res
+                    .status(500)
+                    .json({errorMessage: "Internal server error. Please try another time"})
+            })
     } else {
         res
             .status(400)
