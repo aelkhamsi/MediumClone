@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CST } from 'src/app/constants/ls';
 import { Article } from 'src/app/models/Article';
-import { ArticleReadDto, ArticleWriteDto } from 'src/app/models/ArticleDto';
+import { ArticleReadDto, ArticleWriteDto } from 'src/app/models/DTOs/ArticleDto';
 
 @Injectable({
   providedIn: 'root'

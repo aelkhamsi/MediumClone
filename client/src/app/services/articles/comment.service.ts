@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CST } from 'src/app/constants/ls';
-import { CommentReadDto, CommentWriteDto } from 'src/app/models/CommentDto';
+import { CommentReadDto, CommentWriteDto } from 'src/app/models/DTOs/CommentDto';
 
 @Injectable()
 export class CommentService {

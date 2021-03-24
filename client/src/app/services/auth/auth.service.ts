@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LoginReadDto, LoginWriteDto } from 'src/app/models/LoginDto';
-import { SignupWriteDto } from 'src/app/models/SignupDto';
+import { LoginReadDto, LoginWriteDto } from 'src/app/models/DTOs/LoginDto';
+import { SignupWriteDto } from 'src/app/models/DTOs/SignupDto';
 import { User } from 'src/app/models/User';
 
 @Injectable({
