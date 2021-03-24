@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 const User = require('../models/User');
-const userRepository = require('../database/repositories/UserRepository');
+const userRepository = require('../repositories/UserRepository');
 
 
 exports.signup = async (req, res) => {
