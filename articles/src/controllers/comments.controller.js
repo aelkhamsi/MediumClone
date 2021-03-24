@@ -1,53 +1,72 @@
 const fs = require('fs');
 const path = require('path');
-const queries = require('../queries/comments-queries');
-let Comment = require('../models/Comment.js');
+const Comment = require('../models/Comment');
+const commentRepository = require('../repositories/CommentRepository');
 
-// exports.getAll = (req, res) => {
-
-// }
-
-// exports.getById = (req, res) => {
-
-// }
-
-exports.getByArticleId = (req, res) => {
-    //let sql = fs.readFileSync(path.resolve(__dirname, '../queries/comments/getByArticleId.sql'), 'utf8');
-    let sql = queries.QUERY_GET_BY_ARTICLE_ID;
-    db.query(sql, parseInt(req.params.id), (err, result) => {
-        if (err) {
+exports.getAll = (req, res) => {
+    commentRepository.getAll()
+        .then((result) => {
+            res
+                .status(200)
+                .json(result)
+        })
+        .catch((err) => {
             res
                 .status(500)
                 .json({errorMessage: "Internal server error. Please try another time"})
-            throw err;
-        }
-        res
-            .status(200)
-            .json(result)
-    });
+        })
+}
+
+exports.getById = (req, res) => {
+    commentRepository.getById(req.params.id)
+        .then((result) => {
+            if (result.length == 0)
+                res 
+                    .status(404)
+                    .json({errorMessage: "Not Found"})
+            else
+                res
+                    .status(200)
+                    .json(result[0])
+        })
+        .catch((err) => {
+            res
+                .status(500)
+                .json({errorMessage: "Internal server error. Please try another time"})
+        })
+}
+
+exports.getByArticleId = (req, res) => {
+    commentRepository.getByArticleId(req.params.id)
+        .then((result) => {
+            res
+                .status(200)
+                .json(result)
+        })
+        .catch((err) => {
+            res
+                .status(500)
+                .json({errorMessage: "Internal server error. Please try another time"})
+        })
 }
 
 exports.addComment = (req, res) => {
-    
-    if (req.body.userId && req.body.articleId && req.body.comment) {
-        let comment = new Comment(req.body.userId, req.body.articleId, req.body.comment);
-        let sql = `INSERT INTO comments SET ?;`;
+    let comment = new Comment(req.body.userId, req.body.articleId, req.body.comment);
 
-        db.query(sql, comment, (err, result) => {
-            if (err) {
-                console.log(err);
-                res
-                    .status(500)
-                    .json({errorMessage: "Internal server error. Please try another time"})
-            }
-                
-            else
+    if (comment.userId && comment.articleId && comment.comment) {
+        commentRepository.add(comment)
+            .then((result) => {
                 res
                     .status(200)
                     .json({
                         message: "Comment added"
                     })
-        });
+            })
+            .catch((err) => {
+                res
+                    .status(500)
+                    .json({errorMessage: "Internal server error. Please try another time"})
+            })
     } else {
         res
             .status(400)

@@ -30,7 +30,6 @@ exports.getById = (req, res) => {
                     .json(result)
         })
         .catch((err) => {
-            console.log(err);
             res
                 .status(500)
                 .json({errorMessage: "Internal server error. Please try another time"})
