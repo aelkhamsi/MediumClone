@@ -36,6 +36,7 @@ export class LoginBoxComponent implements OnInit {
 
   onSubmit() {
     // currently, keepConnection field is not used
+    console.log("Submit");
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((response: any) => {
         localStorage.setItem(CST.LS_LABEL_USER, JSON.stringify(response.user));
@@ -43,7 +44,8 @@ export class LoginBoxComponent implements OnInit {
 
         this.router.navigate(['dashboard']);
       }, (error) => { // error is of type HttpErrorResponse
-        this.openSnackBar(error.error.errorMessage, "Error");
+        console.log(error);
+        this.openSnackBar(error.errorMessage, "Error");
         this.loginForm.reset();
       }); 
   }

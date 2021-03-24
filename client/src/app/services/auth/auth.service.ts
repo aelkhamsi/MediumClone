@@ -37,6 +37,9 @@ export class AuthService {
   }
 
   getToken(): string {
-    return localStorage.getItem(CST.LS_LABEL_TOKEN);
+    let token = localStorage.getItem(CST.LS_LABEL_TOKEN);
+    if (token)
+      return token
+    return '';
   }
 }
