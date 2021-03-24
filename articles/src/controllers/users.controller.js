@@ -1,6 +1,5 @@
-let User = require('../models/User.js');
+const User = require('../models/User');
 const userRepository  = require('../repositories/UserRepository');
-
 
 exports.getAll = (req, res) => {
     userRepository.getAll()

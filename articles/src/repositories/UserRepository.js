@@ -1,9 +1,10 @@
+const queries = require('../queries/users-queries');
 
 class UserRepository {
 
     getAll() {
         return new Promise((resolve, reject) => {
-            let sql = `SELECT * FROM users`;
+            let sql = queries.QUERY_GET_ALL;;
             db.query(sql, (err, result) => {
                 if (err) 
                     reject(err);
@@ -15,7 +16,7 @@ class UserRepository {
 
     getById(id) {
         return new Promise((resolve, reject) => {
-            let sql = `SELECT * FROM users WHERE id = ?`;
+            let sql = queries.QUERY_GET_BY_ID;
             db.query(sql, id, (err, result) => {
                 if (err) 
                     reject(err);

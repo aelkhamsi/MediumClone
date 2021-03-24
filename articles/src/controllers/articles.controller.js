@@ -1,4 +1,4 @@
-let Article = require('../models/Article.js');
+const Article = require('../models/Article');
 const articleRepository = require('../repositories/ArticleRepository');
 
 exports.getAll = (req, res) => {

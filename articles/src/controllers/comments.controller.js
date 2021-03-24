@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const Comment = require('../models/Comment');
 const commentRepository = require('../repositories/CommentRepository');
 

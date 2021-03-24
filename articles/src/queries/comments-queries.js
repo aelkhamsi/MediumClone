@@ -11,4 +11,5 @@ module.exports = {
     FROM comments 
     JOIN users ON comments.userId = users.id 
     WHERE articleId = ?;`,
+    QUERY_POST_COMMENT: `INSERT INTO comments SET ?;`
 }

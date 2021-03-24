@@ -4,7 +4,7 @@ class CommentRepository {
 
     getAll() {
         return new Promise((resolve, reject) => {
-            let sql = `SELECT * FROM users`;            
+            let sql = queries.QUERY_GET_ALL;            
             db.query(sql, (err, result) => {
                 if (err) 
                     reject(err);
@@ -40,7 +40,7 @@ class CommentRepository {
 
     add(comment) {
         return new Promise((resolve, reject) => {
-            let sql = `INSERT INTO comments SET ?;`;
+            let sql = queries.QUERY_POST_COMMENT;
             db.query(sql, comment, (err, result) => {
                 if (err) 
                     reject(err);          
