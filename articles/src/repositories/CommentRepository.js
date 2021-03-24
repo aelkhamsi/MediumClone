@@ -4,7 +4,7 @@ class CommentRepository {
 
     getAll() {
         return new Promise((resolve, reject) => {
-            let sql = queries.QUERY_GET_ALL;
+            let sql = `SELECT * FROM users`;            
             db.query(sql, (err, result) => {
                 if (err) 
                     reject(err);

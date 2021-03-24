@@ -6,7 +6,7 @@ module.exports = (app) => {
       res.send("<h1> Hello World! </h1>");
     })
 
-    app.get("/users/:id", usersController.getById);
+    app.get("/user/:id", usersController.getById);
 
-    app.get("/users", usersController.getAll);
+    app.get("/user", usersController.getAll);
 }
