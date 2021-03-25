@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
+const env = require('../../environnement');
 
 const userRepository = require('../repositories/UserRepository');
 
@@ -51,7 +52,7 @@ exports.login = async (req, res) => {
                     user = user.dataValues;
                     bcrypt.compare(loginData.password, user.password, function(err, success) {
                         if (success) { //Good Password
-                            let token = jwt.sign(user, 'iamthegreatestaliveandiamhumble', { expiresIn: '1h' });
+                            let token = jwt.sign(user, env.HASH_SECRET, { expiresIn: '1h' });
                             res
                                 .status(200)
                                 .json({user: user, access_token: token})

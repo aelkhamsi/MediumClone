@@ -35,6 +35,7 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("Submit article");
     this.articleService.addArticle(this.createForm.value.title, this.createForm.value.content)
       .subscribe((response: any) => {
         this.openSnackBar("Article Added", "Success");

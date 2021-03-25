@@ -67,6 +67,7 @@ exports.addArticle = (req, res) => {
                     })
             })
             .catch((err) => {
+                console.log(err);
                 res
                     .status(500)
                     .json({errorMessage: "Internal server error. Please try another time"})
