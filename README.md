@@ -58,5 +58,15 @@ The APIs have the same architecture, which will be explained in the figure below
 ![architecture2](https://user-images.githubusercontent.com/48811230/112399186-14031a80-8d06-11eb-82fc-4bc05af0f662.png)
 
 
+The **index.js** listens for request on an HTTP port. Once a request is recieved, it's channeled to a specific **controller** to be handled. The channeling or routing is achieved using Express routing handled by the **routes** files.<br>
+The **controllers** handled the logic side and then send a response to client when the processing is completed. For any communication with the database, the controllers use the **repositories**. In this manner, we implemented the repository pattern to separate logic from database access.
+
+## The client application
+The client interface was implemented with **Angular**. The architecture is as follows:
 
 
+![architecture3](https://user-images.githubusercontent.com/48811230/112400318-6e04df80-8d08-11eb-97dd-940c79b9f6be.png)
+
+
+The App Module contains three sub-modules: **Auth**, **Dashboard** and **Landing**. Each sub-modules is responsible for a set of interfaces representing a different part of the application. In this manner, our frontend application will stay lean, modular and organised. Besided, we will be able to take advantage of
+lazy loading for more performance once our application scales.
