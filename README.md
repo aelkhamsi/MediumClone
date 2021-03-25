@@ -70,3 +70,15 @@ The client interface was implemented with **Angular**. The architecture is as fo
 
 The App Module contains three sub-modules: **Auth**, **Dashboard** and **Landing**. Each sub-modules is responsible for a set of interfaces representing a different part of the application. In this manner, our frontend application will stay lean, modular and organised. Besided, we will be able to take advantage of
 lazy loading for more performance once our application scales.
+
+
+## Future features
+Given the very limited time of the project, we weren't able to implement additional features as:
+- Search by keyword & tag
+- Reactions
+
+However, we believe that the architecture of our project is solid enough to support any additional feature in the same way that the already developed features were integrated. Actually, our goal of this project is to explore system design and design patterns to try to come up with the most lean architecture possible. <br>
+<br>
+
+
+For any comments and/or suggestions, contact me at **achrafelkhamsi@gmail.com**
